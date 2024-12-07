@@ -1,12 +1,16 @@
 import React from "react";
-import MultiFormPage from "./components/MultiForm";
+import { Routes, Route } from "react-router-dom";
+import MultiForm from "./components/MultiForm";
+import UsersPages from "./components/UsersPages";
 
-function App() {
+
+const App = () => {
   return (
-    <div>
-     <MultiFormPage/>
-    </div>
+    <Routes>
+      <Route path="/" element={<MultiForm />} />
+      <Route path="/users" element={<UsersPages />} />
+    </Routes>
   );
-}
+};
 
 export default App;
