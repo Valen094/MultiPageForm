@@ -7,4 +7,4 @@ const userSchema = new mongoose.Schema({
   address: { type: String, required: [true, 'The address is obligatory'] },
 });
 
-module.exports = mongoose.model('users', userSchema);
+module.exports = mongoose.model('Users', userSchema);

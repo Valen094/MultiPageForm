@@ -11,22 +11,22 @@ const UsersPages = () => {
     const navigate = useNavigate();
 
   useEffect(() => {
-    // Obtener los usuarios del backend
+
     axios
       .get("http://localhost:5001/api/users")
       .then((response) => {
-        setUsers(response.data); // Guardar los datos en el estado
+        setUsers(response.data);
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error al obtener los usuarios:", error);
-        setError(error.response?.data?.message || "Error al cargar los datos");
+        console.error("Error getting users:", error);
+        setError(error.response?.data?.message || "Error loading data");
         setLoading(false);
       });
   }, []);
 
   if (loading) {
-    return <p>Cargando datos...</p>;
+    return <p>Loading data...</p>;
   }
 
   if (error) {
@@ -42,18 +42,18 @@ const UsersPages = () => {
      <button onClick={handleSubmit} >Go Back</button>
 
      
-      <h2>Lista de Usuarios</h2>
+      <h2>User List</h2>
       {users.length === 0 ? (
-        <p>No hay usuarios registrados.</p>
+        <p>There are no registered users.</p>
       ) : (
         <table border="1" cellPadding="10" style={{ width: "100%", textAlign: "left" }}>
           <thead>
             <tr>
               <th>ID</th>
-              <th>Nombre</th>
-              <th>Edad</th>
-              <th>Correo Electrónico</th>
-              <th>Dirección</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Email</th>
+              <th>Address</th>
             </tr>
           </thead>
           <tbody>

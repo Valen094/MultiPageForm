@@ -35,35 +35,35 @@ const MultiForm = () => {
 
 
     const handleSubmit = () => {
-        // Verificar si todos los campos están completos
         if (!formData.name || !formData.age || !formData.email || !formData.address) {
-            alert("Por favor completa todos los campos");
+            alert("Please complete all fields");
             return;
         }
     
-        // Indicar que la solicitud está en curso
         setIsSubmitting(true);
+
+        // console.log("Data sent to backend:", formData);
     
-        // Enviar los datos al backend
+        
         axios
             .post("http://localhost:5001/api/users", formData)
             .then((response) => {
-                console.log("Usuario creado:", response.data);
-                alert("Usuario creado con éxito!");
-                navigate("/users"); // Navegar a la página de usuarios
+                console.log("User created:", response.data);
+                alert("User created successfully!");
+                navigate("/users");
             })
             .catch((error) => {
-                console.error("Error al enviar el formulario:", error.response?.data || error.message);
-                alert(error.response?.data?.message || "Error al enviar los datos, por favor intenta nuevamente.");
+                console.error("Error submitting form:", error.response?.data || error.message);
+                alert(error.response?.data?.message || "Error sending data, please try again.");
             })
             .finally(() => {
-                // Finalizar la solicitud
+               
                 setIsSubmitting(false);
             });
     };
 
     const users = () => {
-        navigate("/users"); // Navegar a la página de usuarios
+        navigate("/users");
     }
     
 

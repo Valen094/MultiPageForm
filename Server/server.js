@@ -6,23 +6,24 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-// Conexión a la base de datos
+
 mongoose
   .connect('mongodb://localhost:27017/multipageform', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log('Conectado a MongoDB'))
-  .catch((error) => console.error('Error al conectar a MongoDB:', error));
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((error) => console.error('Error connecting to MongoDB:', error));
 
-// Rutas
-const userRoutes = require('./routes/userRoutes'); // Importa las rutas
-app.use('/api/users', userRoutes); // Monta las rutas
 
-// Iniciar servidor
+const userRoutes = require('./routes/userRoutes');
+app.use('/api/users', userRoutes);
+
+
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
